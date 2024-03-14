@@ -5,3 +5,5 @@
 # Python Trash
 __pycache__/
 venv/
+
+.env
