@@ -1,0 +1,16 @@
+version: '3'
+
+services:
+  db:
+    image: proffapt/scmb-db
+    container_name: scmb-db
+    environment:
+      - POSTGRES_PASSWORD=postgres@smb-db
+      - POSTGRES_DB=scmb
+    ports:
+      - 5432:5432
+    volumes:
+      - scmb-db-data:/var/lib/postgresql/data
+
+volumes:
+  scmb-db-data:

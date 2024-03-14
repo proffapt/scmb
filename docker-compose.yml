@@ -1,0 +1,22 @@
+version: '3'
+
+services:
+  web:
+    build:
+      context: .
+      dockerfile: Dockerfile
+    image: proffapt/scmb-web
+    container_name: scmb-web
+    ports:
+      - 8000:8000
+
+  db:
+    build:
+      context: database
+      dockerfile: Dockerfile
+    image: proffapt/scmb-db
+    container_name: scmb-db
+    environment:
+      - POSTGRES_PASSWORD=postgres@smb-db
+    ports:
+      - 5432:5432

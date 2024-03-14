@@ -1,9 +1,12 @@
+-- Switch to the newly created database
+\c scmb
+
 ------------------
 -- Database Schema
 ------------------
 
 -- Create User table
-CREATE TABLE User (
+CREATE TABLE Person (
     username VARCHAR PRIMARY KEY NOT NULL,
     email VARCHAR NOT NULL UNIQUE,
     password VARCHAR NOT NULL,
@@ -24,8 +27,8 @@ CREATE TABLE Product (
 CREATE TABLE SupplyChain (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     time_created TIMESTAMP NOT NULL,
-    product BIGINT NOT NULL REFERENCES Product(code),
-    user BIGINT NOT NULL REFERENCES User(username)
+    product VARCHAR NOT NULL REFERENCES Product(code),
+    person VARCHAR NOT NULL REFERENCES Person(username)
 );
 
 -- Create Shipment table
@@ -46,7 +49,7 @@ CREATE TABLE RolesMap (
 -- Create Role table
 CREATE TABLE Role (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    username BIGINT NOT NULL REFERENCES User(username),
+    username VARCHAR NOT NULL REFERENCES Person(username),
     supply_chain BIGINT NOT NULL REFERENCES SupplyChain(id),
     role BIGINT NOT NULL REFERENCES RolesMap(id)
 );
@@ -56,7 +59,7 @@ CREATE TABLE Certificate (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     hash VARCHAR NOT NULL,
     time_created TIMESTAMP NOT NULL,
-    issuer BIGINT NOT NULL REFERENCES User(username),
+    issuer VARCHAR NOT NULL REFERENCES Person(username),
     shipment VARCHAR NOT NULL REFERENCES Shipment(code)
 );
 
