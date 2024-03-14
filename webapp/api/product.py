@@ -1,6 +1,5 @@
-from . import api
-from models import Product
 from flask import request, jsonify
+from models.product import *
 from database.product import *
 
 
@@ -44,11 +43,3 @@ def delete(code: str):
         return jsonify(product), 200
     except Exception as e:
         return jsonify({"error": str(e)}), 500
-
-
-api.add_url_rule("/product/<string:code>",
-                 view_func=get, methods=["GET"])
-api.add_url_rule("/product/<string:code>",
-                 view_func=delete, methods=["DELETE"])
-api.add_url_rule("/product", view_func=create_or_update,
-                 methods=["POST", "PUT"])

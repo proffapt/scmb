@@ -1,6 +1,6 @@
-from models import Product
+from . import db
 from typing import List
-
+from models.product import Product
 
 def get_all_products() -> List[Product]:
     return [
