@@ -5,7 +5,7 @@ services:
     image: proffapt/scmb-db
     container_name: scmb-db
     environment:
-      - POSTGRES_PASSWORD=postgres@smb-db
+      - POSTGRES_PASSWORD=postgres-scmb-db
       - POSTGRES_DB=scmb
     ports:
       - 5432:5432

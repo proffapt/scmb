@@ -20,7 +20,7 @@ services:
     container_name: scmb-db
     environment:
       - POSTGRES_DB=scmb
-      - POSTGRES_PASSWORD=postgres@smb-db
+      - POSTGRES_PASSWORD=postgres-scmb-db
     ports:
       - 5432:5432
     volumes:
