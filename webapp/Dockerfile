@@ -16,4 +16,4 @@ COPY database/ ./database/
 
 EXPOSE 8000
 
-CMD [ "flask", "run", "--host=0.0.0.0", "--port", "8000", "--debug" ] # TODO: Disable debug mode
+CMD [ "flask", "run", "--host=0.0.0.0", "--port", "8000" ]
