@@ -7,16 +7,25 @@ from flask import Response, request, jsonify
 def get(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     if code.casefold() == "all":
         try:
-            products = [serialize(product) for product in get_all_products()]
-            return jsonify(products), 200
+            db_resps: List[Product] | DB_Error = get_all_products()
+            if not isinstance(db_resps, Product):
+                products: List[ProductType] = [
+                    serialize(product) for product in db_resps]
+                return jsonify(products), 200
+            else:
+                return jsonify(db_resps), 400
         except Exception as e:
-            return jsonify({"api_error": str(e)}), 400
+            return jsonify({"api_error": str(e)}), 500
     else:
         try:
-            product = serialize(get_product(code))
-            return jsonify(product), 200
+            db_resp: Product | DB_Error = get_product(code)
+            if isinstance(db_resp, Product):
+                product: ProductType = serialize(db_resp)
+                return jsonify(product), 200
+            else:
+                return jsonify(db_resp), 400
         except Exception as e:
-            return jsonify({"api_error": str(e)}), 400
+            return jsonify({"api_error": str(e)}), 500
 
 
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
@@ -30,16 +39,23 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": "Product code and name are required"}), 400
 
     try:
-        product = create_or_update_product(code, name)
-        return jsonify(product), 200
+        db_resp: Product | DB_Error = create_or_update_product(code, name)
+        if isinstance(db_resp, Product):
+            product: ProductType = serialize(db_resp)
+            return jsonify(product), 200
+        else:
+            return jsonify(db_resp), 400
     except Exception as e:
         return jsonify({"api_error": str(e)}), 500
 
 
 def delete(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
-        product: Product | DB_Error = delete_product(code)
-        product: ProductType = serialize(product)
-        return jsonify(product), 200
+        db_resp: Product | DB_Error = delete_product(code)
+        if isinstance(db_resp, Product):
+            product: ProductType = serialize(db_resp)
+            return jsonify(product), 200
+        else:
+            return jsonify(db_resp), 400
     except Exception as e:
         return {"api_error": str(e)}, 500

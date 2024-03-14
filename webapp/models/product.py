@@ -1,5 +1,5 @@
-from typing import TypedDict
 from database import db
+from typing import TypedDict
 
 
 class Product(db.Model):
