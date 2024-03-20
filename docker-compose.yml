@@ -16,7 +16,7 @@ services:
 
   db:
     build:
-      context: database
+      context: postgres
       dockerfile: Dockerfile
     image: proffapt/scmb-db
     container_name: scmb-db

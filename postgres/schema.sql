@@ -8,7 +8,7 @@
 -- Table: Person
 CREATE TABLE IF NOT EXISTS Person (
     username VARCHAR PRIMARY KEY NOT NULL,
-    email VARCHAR PRIMARY KEY NOT NULL,
+    email VARCHAR NOT NULL,
     password VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR,
@@ -26,7 +26,6 @@ CREATE TABLE IF NOT EXISTS Product (
 -- Table: SupplyChain
 CREATE TABLE IF NOT EXISTS SupplyChain (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    time_created TIMESTAMP NOT NULL,
     name VARCHAR NOT NULL
 );
 
