@@ -5,10 +5,10 @@
 -- Database Schema
 ------------------
 
--- Create User table
-CREATE TABLE Person (
+-- Table: Person
+CREATE TABLE IF NOT EXISTS Person (
     username VARCHAR PRIMARY KEY NOT NULL,
-    email VARCHAR NOT NULL UNIQUE,
+    email VARCHAR PRIMARY KEY NOT NULL,
     password VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR,
@@ -17,70 +17,69 @@ CREATE TABLE Person (
     organisation VARCHAR NOT NULL
 );
 
--- Create Product table
-CREATE TABLE Product (
+-- Table: Product
+CREATE TABLE IF NOT EXISTS Product (
     code VARCHAR PRIMARY KEY NOT NULL,
     name VARCHAR NOT NULL
 );
 
--- Create SupplyChain table
-CREATE TABLE SupplyChain (
+-- Table: SupplyChain
+CREATE TABLE IF NOT EXISTS SupplyChain (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    time_created TIMESTAMP NOT NULL,
-    product VARCHAR NOT NULL REFERENCES Product(code),
-    person VARCHAR NOT NULL REFERENCES Person(username)
+    time_created TIMESTAMP NOT NULL
 );
 
--- Create Shipment table
-CREATE TABLE Shipment (
+-- Table: Shipment
+CREATE TABLE IF NOT EXISTS Shipment (
     code VARCHAR PRIMARY KEY NOT NULL,
-    supply_chain BIGINT NOT NULL REFERENCES SupplyChain(id),
     time_created TIMESTAMP NOT NULL,
+    supply_chain BIGINT REFERENCES SupplyChain(id) NOT NULL,
+    product VARCHAR REFERENCES Product(code) NOT NULL,
     quantity FLOAT NOT NULL,
-    quantity_unit VARCHAR NOT NULL
+    quantity_unit VARCHAR NOT NULL,
+    acceptable_quality_lower_bound BIGINT,
+    acceptable_quality_upper_bound BIGINT,
+    expected_quality BIGINT
 );
 
--- Create RolesMap table
-CREATE TABLE RolesMap (
+-- Table: RolesMap
+CREATE TABLE IF NOT EXISTS RolesMap (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     permissions VARCHAR NOT NULL
 );
 
--- Create Role table
-CREATE TABLE Role (
+-- Table: Role
+CREATE TABLE IF NOT EXISTS Role (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    username VARCHAR NOT NULL REFERENCES Person(username),
-    supply_chain BIGINT NOT NULL REFERENCES SupplyChain(id),
-    role BIGINT NOT NULL REFERENCES RolesMap(id)
+    username VARCHAR REFERENCES Person(username) NOT NULL,
+    supply_chain BIGINT REFERENCES SupplyChain(id) NOT NULL,
+    role BIGINT REFERENCES RolesMap(id) NOT NULL
 );
 
--- Create Certificate table
-CREATE TABLE Certificate (
-    id BIGSERIAL PRIMARY KEY NOT NULL,
-    hash VARCHAR NOT NULL,
-    time_created TIMESTAMP NOT NULL,
-    issuer VARCHAR NOT NULL REFERENCES Person(username),
-    shipment VARCHAR NOT NULL REFERENCES Shipment(code)
-);
-
--- Create Metadata table
-CREATE TABLE Metadata (
+-- Table: Certificate
+CREATE TABLE IF NOT EXISTS Certificate (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     timestamp TIMESTAMP NOT NULL,
+    shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
+    issuer VARCHAR REFERENCES Person(username) NOT NULL,
+    hash VARCHAR NOT NULL
+);
+
+-- Table: Metadata
+CREATE TABLE IF NOT EXISTS Metadata (
+    id BIGSERIAL PRIMARY KEY NOT NULL,
+    timestamp TIMESTAMP NOT NULL,
+    shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
     latitude VARCHAR,
     longitude VARCHAR,
     temperature VARCHAR,
-    present_quality BIGINT,
-    expected_quality BIGINT,
-    acceptable_quality_lower_bound BIGINT,
-    acceptable_quality_upper_bound BIGINT,
-    shipment VARCHAR NOT NULL REFERENCES Shipment(code)
+    quality BIGINT
 );
 
--- Create Event table
-CREATE TABLE Event (
+-- Table: Event
+CREATE TABLE IF NOT EXISTS Event (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    event VARCHAR NOT NULL,
     timestamp TIMESTAMP NOT NULL,
-    shipment VARCHAR NOT NULL REFERENCES Shipment(code)
+    shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
+    event VARCHAR NOT NULL
 );
