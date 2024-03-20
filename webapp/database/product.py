@@ -25,8 +25,6 @@ def create_or_update_product(code: str, name: str) -> Product | DB_Error:
     try:
         if request.method == "PUT":
             delete_product(code)
-        else:
-            return {"db_error": f"Product with code={code} already exist"}
         product: Product = Product(code=code, name=name)
         db.session.add(product)
         db.session.commit()
