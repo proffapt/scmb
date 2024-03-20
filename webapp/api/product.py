@@ -1,3 +1,4 @@
+from venv import create
 from models.product import *
 from database.product import *
 from models.error import API_Error
@@ -39,7 +40,11 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": "Product code and name are required"}), 400
 
     try:
-        db_resp: Product | DB_Error = create_or_update_product(code, name)
+        if request.method == "PUT":
+            db_resp: Product | DB_Error = update_product(code, name)
+        else:
+            db_resp: Product | DB_Error = create_product(code, name)
+
         if isinstance(db_resp, Product):
             product: ProductType = serialize(db_resp)
             return jsonify(product), 200
