@@ -1,4 +1,3 @@
-from flask import request
 from . import db
 from typing import List
 from models.product import *

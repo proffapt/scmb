@@ -26,7 +26,8 @@ CREATE TABLE IF NOT EXISTS Product (
 -- Table: SupplyChain
 CREATE TABLE IF NOT EXISTS SupplyChain (
     id BIGSERIAL PRIMARY KEY NOT NULL,
-    time_created TIMESTAMP NOT NULL
+    time_created TIMESTAMP NOT NULL,
+    name VARCHAR NOT NULL
 );
 
 -- Table: Shipment

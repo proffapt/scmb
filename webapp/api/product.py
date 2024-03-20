@@ -1,4 +1,3 @@
-from venv import create
 from models.product import *
 from database.product import *
 from models.error import API_Error
