@@ -3,7 +3,7 @@ version: '3'
 services:
   web:
     build:
-      context: .
+      context: webapp
       dockerfile: Dockerfile
     image: proffapt/scmb-web
     container_name: scmb-web
