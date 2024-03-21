@@ -9,6 +9,8 @@ services:
     container_name: scmb-web
     env_file:
       - .env 
+    volumes:
+      - ./webapp/certificates:/app/certificates
     ports:
       - 8000:8000
     networks:

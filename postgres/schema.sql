@@ -61,7 +61,8 @@ CREATE TABLE IF NOT EXISTS Certificate (
     timestamp TIMESTAMP NOT NULL,
     shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
     issuer VARCHAR REFERENCES Person(username) NOT NULL,
-    hash VARCHAR NOT NULL
+    pdf_path VARCHAR NOT NULL,
+    pdf_hash VARCHAR NOT NULL
 );
 
 -- Table: Shipment_Metadata

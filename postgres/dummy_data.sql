@@ -100,3 +100,7 @@ INSERT INTO Person (username, email, password, first_name, last_name, address, p
 ('alice_jackson', 'alice@example.com', 'password789', 'Alice', 'Jackson', '789 Oak St, Anycity, USA', '456-789-0123', 'Company C'),
 ('bob_johnson', 'bob@example.com', 'passwordabc', 'Bob', 'Johnson', '321 Maple St, Othercity, USA', '789-012-3456', 'Company D'),
 ('susan_williams', 'susan@example.com', 'passwordxyz', 'Susan', 'Williams', '654 Pine St, Anyvillage, USA', '012-345-6789', 'Company E');
+
+-- Insert dummy data into Certificate table
+INSERT INTO Certificate (timestamp, shipment, issuer, pdf_path, pdf_hash) VALUES
+('2024-03-25 10:00:00', 'S1', 'john_doe', '/app/certificates/test.pdf', '1358251341bd5fe67118d310e088e33353e2bc10151ac2eb14aac0aab164db61');

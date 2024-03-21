@@ -78,8 +78,8 @@ def delete(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resp: ShipmentMetadata | DB_Error = delete_metadata(id)
         if isinstance(db_resp, ShipmentMetadata):
-            metadata_info: ShipmentMetadataType = serialize(db_resp)
-            return jsonify(metadata_info), 200
+            metadata: ShipmentMetadataType = serialize(db_resp)
+            return jsonify(metadata), 200
         else:
             return jsonify(db_resp), 400
     except Exception as e:

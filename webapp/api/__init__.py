@@ -1,5 +1,13 @@
 from flask import Blueprint
-from . import product, shipment_metadata, supplychain, shipment, shipment_event, person
+from . import (
+    product,
+    shipment_metadata,
+    supplychain,
+    shipment,
+    shipment_event,
+    person,
+    certificate
+)
 
 api = Blueprint('api', __name__)
 
@@ -151,4 +159,42 @@ api.add_url_rule(
     view_func=person.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_person"
+)
+
+# Endpoints related to certificates
+api.add_url_rule(
+    "/certificate/<string:id>",
+    view_func=certificate.get,
+    methods=["GET"],
+    endpoint="get_certificate"
+)
+api.add_url_rule(
+    "/certificate/shipment/<string:code>",
+    view_func=certificate.get_all_by_shipment,
+    methods=["GET"],
+    endpoint="get_certificates_by_shipment"
+)
+api.add_url_rule(
+    "/certificate/issuer/<string:username>",
+    view_func=certificate.get_all_by_issuer,
+    methods=["GET"],
+    endpoint="get_certificates_by_issuer"
+)
+api.add_url_rule(
+    "/certificate/<int:id>/download",
+    view_func=certificate.download,
+    methods=["GET"],
+    endpoint="download_certificate"
+)
+api.add_url_rule(
+    "/certificate/<int:id>",
+    view_func=certificate.delete,
+    methods=["DELETE"],
+    endpoint="delete_certificate"
+)
+api.add_url_rule(
+    "/certificate",
+    view_func=certificate.create_or_update,
+    methods=["POST", "PUT"],
+    endpoint="create_or_update_certificate"
 )
