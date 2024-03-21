@@ -75,8 +75,8 @@ CREATE TABLE IF NOT EXISTS Shipment_Metadata (
     quality BIGINT
 );
 
--- Table: Event
-CREATE TABLE IF NOT EXISTS Event (
+-- Table: Shipment_Event
+CREATE TABLE IF NOT EXISTS Shipment_Event (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     timestamp TIMESTAMP NOT NULL,
     shipment VARCHAR REFERENCES Shipment(code) NOT NULL,

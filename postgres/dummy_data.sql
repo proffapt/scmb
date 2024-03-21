@@ -80,3 +80,15 @@ INSERT INTO Shipment_Metadata (timestamp, shipment, latitude, longitude, tempera
 ('2024-03-20 16:00:00', 'S2', '37.7749', '-122.4194', '24°C', 55),
 ('2024-03-20 17:00:00', 'S3', '40.4168', '-3.7038', '19°C', 50),
 ('2024-03-20 18:00:00', 'S3', '52.3667', '4.8945', '21°C', 45);
+
+-- Insert dummy data into Shipment_Event table
+INSERT INTO Shipment_Event (timestamp, shipment, event)
+VALUES
+    ('2024-03-21T07:52:55', 'S1', 'Arrived at port'),
+    ('2024-03-22T08:30:12', 'S1', 'Loaded onto truck'),
+    ('2024-03-23T10:15:42', 'S1', 'In transit'),
+    ('2024-03-24T12:45:21', 'S1', 'Arrived at warehouse'),
+    ('2024-03-25T15:20:36', 'S1', 'Delivered to customer'),
+    ('2024-03-21T07:52:55', 'S2', 'Arrived at port'),
+    ('2024-03-22T08:30:12', 'S2', 'Loaded onto truck'),
+    ('2024-03-23T10:15:42', 'S2', 'In transit');
