@@ -1,3 +1,4 @@
+import os
 import bcrypt
 from database import db
 from typing import List
@@ -26,13 +27,19 @@ def get_person(username: str) -> Person | DB_Error:
 
 def create_person(person_details: PersonType) -> Person | DB_Error:
     try:
+        HASH_SALT = os.environ.get("HASH_SALT")
+        if not HASH_SALT:
+            return {"db_error": "Hash salt not found"}
+
         person_username = person_details.get("username")
         if person_username == "all":
             return {"db_error": "Username can not be all"}
+
         person_password = person_details.get("password")
         # Hash the password before storing it
         hashed_password = bcrypt.hashpw(person_password.encode(
-            'utf-8'), bcrypt.gensalt()).decode('utf-8')
+            'utf-8'), HASH_SALT.encode("utf-8")).decode('utf-8')
+
         person: Person = Person(
             username=person_username,
             email=person_details.get("email"),
@@ -56,11 +63,17 @@ def create_person(person_details: PersonType) -> Person | DB_Error:
 
 def update_person(person_details: PersonType) -> Person | DB_Error:
     try:
+        HASH_SALT = os.environ.get("HASH_SALT")
+        if not HASH_SALT:
+            return {"db_error": "Hash salt not found"}
+
         person_username = person_details.get("username")
+
         person_password = person_details.get("password")
         # Hash the password before storing it
         hashed_password = bcrypt.hashpw(person_password.encode(
-            'utf-8'), bcrypt.gensalt()).decode('utf-8')
+            'utf-8'), HASH_SALT.encode("utf-8")).decode('utf-8')
+
         person: Person | DB_Error = get_person(username=person_username)
         if isinstance(person, Person):
             person.email = person_details.get("email")
