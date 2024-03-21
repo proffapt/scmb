@@ -23,8 +23,8 @@ CREATE TABLE IF NOT EXISTS Product (
     name VARCHAR NOT NULL
 );
 
--- Table: SupplyChain
-CREATE TABLE IF NOT EXISTS SupplyChain (
+-- Table: Supplychain
+CREATE TABLE IF NOT EXISTS Supplychain (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     name VARCHAR NOT NULL
 );
@@ -32,8 +32,7 @@ CREATE TABLE IF NOT EXISTS SupplyChain (
 -- Table: Shipment
 CREATE TABLE IF NOT EXISTS Shipment (
     code VARCHAR PRIMARY KEY NOT NULL,
-    time_created TIMESTAMP NOT NULL,
-    supply_chain BIGINT REFERENCES SupplyChain(id) NOT NULL,
+    supplychain BIGINT REFERENCES Supplychain(id) NOT NULL,
     product VARCHAR REFERENCES Product(code) NOT NULL,
     quantity FLOAT NOT NULL,
     quantity_unit VARCHAR NOT NULL,
@@ -52,7 +51,7 @@ CREATE TABLE IF NOT EXISTS RolesMap (
 CREATE TABLE IF NOT EXISTS Role (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     username VARCHAR REFERENCES Person(username) NOT NULL,
-    supply_chain BIGINT REFERENCES SupplyChain(id) NOT NULL,
+    supplychain BIGINT REFERENCES Supplychain(id) NOT NULL,
     role BIGINT REFERENCES RolesMap(id) NOT NULL
 );
 
