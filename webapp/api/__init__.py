@@ -1,5 +1,5 @@
 from flask import Blueprint
-from . import product, supplychain
+from . import product, supplychain, shipment
 
 api = Blueprint('api', __name__)
 
@@ -41,4 +41,42 @@ api.add_url_rule(
     view_func=supplychain.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_supply_chain"
+)
+
+# Endpoints related to shipment
+api.add_url_rule(
+    "/shipment/<string:code>",
+    view_func=shipment.get,
+    methods=["GET"],
+    endpoint="get_shipment"
+)
+api.add_url_rule(
+    "/shipment/sc/<int:id>",
+    view_func=shipment.get_all_by_supplychain,
+    methods=["GET"],
+    endpoint="get_all_shipment_of_supplychain"
+)
+api.add_url_rule(
+    "/shipment/product/<string:code>",
+    view_func=shipment.get_all_by_product,
+    methods=["GET"],
+    endpoint="get_all_shipment_of_product"
+)
+api.add_url_rule(
+    "/shipment/sc/<int:id>/product/<string:code>",
+    view_func=shipment.get_all_by_supplychain_product,
+    methods=["GET"],
+    endpoint="get_all_shipment_of_product_and_supplychain"
+)
+api.add_url_rule(
+    "/shipment/<string:code>",
+    view_func=shipment.delete,
+    methods=["DELETE"],
+    endpoint="delete_shipment"
+)
+api.add_url_rule(
+    "/shipment",
+    view_func=shipment.create_or_update,
+    methods=["POST", "PUT"],
+    endpoint="create_or_update_shipment"
 )
