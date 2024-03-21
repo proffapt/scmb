@@ -1,5 +1,8 @@
 FROM python:3.11.8
 
+# Configure IST Timezone
+ENV TZ="Asia/Kolkata"
+
 WORKDIR /app
 
 COPY requirements.txt .

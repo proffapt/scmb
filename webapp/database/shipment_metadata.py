@@ -36,7 +36,7 @@ def get_metadata(id: int) -> ShipmentMetadata | DB_Error:
 def create_metadata(metadata_details: ShipmentMetadataType) -> ShipmentMetadata | DB_Error:
     try:
         metadata: ShipmentMetadata = ShipmentMetadata(
-            timestamp=datetime.now(),
+            timestamp=datetime.now().strftime("%Y-%m-%dT%H:%M:%S"),
             shipment=metadata_details.get("shipment"),
             latitude=metadata_details.get("latitude"),
             longitude=metadata_details.get("longitude"),
@@ -55,7 +55,7 @@ def update_metadata(metadata_details: ShipmentMetadataType) -> ShipmentMetadata 
         metadata_id = metadata_details.get("id")
         metadata: ShipmentMetadata | DB_Error = get_metadata(metadata_id)
         if isinstance(metadata, ShipmentMetadata):
-            metadata.timestamp = datetime.now()
+            metadata.timestamp = datetime.now().strftime("%Y-%m-%dT%H:%M:%S")
             metadata.shipment = metadata_details.get("shipment")
             metadata.latitude = metadata_details.get("latitude")
             metadata.longitude = metadata_details.get("longitude")
