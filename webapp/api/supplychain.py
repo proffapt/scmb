@@ -9,9 +9,9 @@ def get(id: int | str) -> tuple[Response, int] | tuple[API_Error, int]:
         try:
             db_resps: List[Supplychain] | DB_Error = get_all_supply_chains()
             if not isinstance(db_resps, Supplychain):
-                products: List[SupplychainType] = [
+                supplychains: List[SupplychainType] = [
                     serialize(supplychain) for supplychain in db_resps]
-                return jsonify(products), 200
+                return jsonify(supplychains), 200
             else:
                 return jsonify(db_resps), 400
         except Exception as e:

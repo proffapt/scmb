@@ -64,8 +64,8 @@ CREATE TABLE IF NOT EXISTS Certificate (
     hash VARCHAR NOT NULL
 );
 
--- Table: Metadata
-CREATE TABLE IF NOT EXISTS Metadata (
+-- Table: Shipment_Metadata
+CREATE TABLE IF NOT EXISTS Shipment_Metadata (
     id BIGSERIAL PRIMARY KEY NOT NULL,
     timestamp TIMESTAMP NOT NULL,
     shipment VARCHAR REFERENCES Shipment(code) NOT NULL,

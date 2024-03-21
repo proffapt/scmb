@@ -1,5 +1,5 @@
 from flask import Blueprint
-from . import product, supplychain, shipment
+from . import product, shipment_metadata, supplychain, shipment
 
 api = Blueprint('api', __name__)
 
@@ -79,4 +79,30 @@ api.add_url_rule(
     view_func=shipment.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_shipment"
+)
+
+# Endpoints related to metadata of shipments
+api.add_url_rule(
+    "/metadata/<string:id>",
+    view_func=shipment_metadata.get,
+    methods=["GET"],
+    endpoint="get_metadata"
+)
+api.add_url_rule(
+    "/metadata/shipment/<string:code>",
+    view_func=shipment_metadata.get_all_by_shipment,
+    methods=["GET"],
+    endpoint="get_metadata_by_shipment"
+)
+api.add_url_rule(
+    "/metadata/<int:id>",
+    view_func=shipment_metadata.delete,
+    methods=["DELETE"],
+    endpoint="delete_metadata"
+)
+api.add_url_rule(
+    "/metadata",
+    view_func=shipment_metadata.create_or_update,
+    methods=["POST", "PUT"],
+    endpoint="create_or_update_metadata"
 )
