@@ -92,3 +92,11 @@ VALUES
     ('2024-03-21T07:52:55', 'S2', 'Arrived at port'),
     ('2024-03-22T08:30:12', 'S2', 'Loaded onto truck'),
     ('2024-03-23T10:15:42', 'S2', 'In transit');
+
+-- Insert dummy data into Person table
+INSERT INTO Person (username, email, password, first_name, last_name, address, phone, organisation) VALUES
+('john_doe', 'john@example.com', 'password123', 'John', 'Doe', '123 Main St, Anytown, USA', '123-456-7890', 'Company A'),
+('jane_smith', 'jane@example.com', 'password456', 'Jane', 'Smith', '456 Elm St, Othertown, USA', '987-654-3210', 'Company B'),
+('alice_jackson', 'alice@example.com', 'password789', 'Alice', 'Jackson', '789 Oak St, Anycity, USA', '456-789-0123', 'Company C'),
+('bob_johnson', 'bob@example.com', 'passwordabc', 'Bob', 'Johnson', '321 Maple St, Othercity, USA', '789-012-3456', 'Company D'),
+('susan_williams', 'susan@example.com', 'passwordxyz', 'Susan', 'Williams', '654 Pine St, Anyvillage, USA', '012-345-6789', 'Company E');
