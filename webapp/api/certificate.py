@@ -109,8 +109,11 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
 
 def delete(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
+        pdf_path: str | DB_Error = get_certificate_pdf_path(id)
         db_resp: Certificate | DB_Error = delete_certificate(id)
         if isinstance(db_resp, Certificate):
+            if isinstance(pdf_path, str):
+                os.remove(pdf_path)
             certificate: CertificateType = serialize(db_resp)
             return jsonify(certificate), 200
         else:
