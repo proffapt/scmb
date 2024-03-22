@@ -73,13 +73,18 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": "Only pdf format is supported"}), 400
 
     current_dir: str = os.getcwd()
-    pdf_dir: str = f"{current_dir}/certificates"
+    shipment_code: str = request.form.get("shipment")
+    issuer_username: str = request.form.get("issuer")
+    pdf_dir = os.path.join(current_dir, "certificates",
+                           shipment_code, issuer_username)
+    os.makedirs(pdf_dir, exist_ok=True)
+
     pdf_path = os.path.join(pdf_dir, pdf_name)
     pdf.save(pdf_path)
 
     certificate: CertificateType = CertificateType(
-        shipment=request.form.get("shipment"),
-        issuer=request.form.get("issuer"),
+        shipment=shipment_code,
+        issuer=issuer_username,
         pdf_path=pdf_path,
     )
     if not certificate:
