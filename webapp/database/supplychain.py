@@ -2,6 +2,8 @@ from . import db
 from typing import List
 from models.supplychain import *
 from models.error import DB_Error
+from models.shipment import Shipment
+from database.shipment import delete_shipment, get_all_shipments_by_supplychain
 
 
 def get_all_supply_chains() -> List[Supplychain] | DB_Error:
@@ -50,7 +52,16 @@ def delete_supply_chain(id: int) -> Supplychain | DB_Error:
     try:
         supplychain: Supplychain | DB_Error = get_supply_chain(id)
         if isinstance(supplychain, Supplychain):
+            # TODO: Delete the connected Role table entries
+            # Delete the connected entries in Shipment table
+            shipments: List[Shipment] | DB_Error = get_all_shipments_by_supplychain(
+                id)
+            for shipment in shipments:
+                if isinstance(shipment, Shipment):
+                    delete_shipment(shipment.code)
+            # Delete the supplychain entry
             db.session.delete(supplychain)
+            # Commit the changes
             db.session.commit()
             return supplychain
         else:

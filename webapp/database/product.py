@@ -2,6 +2,8 @@ from . import db
 from typing import List
 from models.product import *
 from models.error import DB_Error
+from models.shipment import Shipment
+from database.shipment import delete_shipment, get_all_shipments_by_product
 
 
 def get_all_products() -> List[Product] | DB_Error:
@@ -54,7 +56,15 @@ def delete_product(code: str) -> Product | DB_Error:
     try:
         product: Product | DB_Error = get_product(code)
         if isinstance(product, Product):
+            # Delete the connected entries in Shipment table
+            shipments: List[Shipment] | DB_Error = get_all_shipments_by_product(
+                code)
+            for shipment in shipments:
+                if isinstance(shipment, Shipment):
+                    delete_shipment(shipment.code)
+            # Delete the product entry
             db.session.delete(product)
+            # Commit the changes
             db.session.commit()
             return product
         else:
