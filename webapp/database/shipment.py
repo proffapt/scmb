@@ -1,7 +1,10 @@
 from . import db
 from typing import List
 from models.error import DB_Error
+from models.certificate import Certificate
+from models.shipment_event import ShipmentEvent
 from models.shipment import Shipment, ShipmentType
+from models.shipment_metadata import ShipmentMetadata
 
 
 def get_all_shipments() -> List[Shipment] | DB_Error:
@@ -103,7 +106,13 @@ def delete_shipment(code: str) -> Shipment | DB_Error:
     try:
         shipment: Shipment | DB_Error = get_shipment(code)
         if isinstance(shipment, Shipment):
+            # Delete the connected entries in Shipment_Metadata, Shipment_Event and Certificate tables
+            db.session.query(ShipmentMetadata).filter(ShipmentMetadata.shipment == code).delete()
+            db.session.query(ShipmentEvent).filter(ShipmentEvent.shipment == code).delete()
+            db.session.query(Certificate).filter(Certificate.shipment == code).delete()
+            # Delete the shipment entry
             db.session.delete(shipment)
+            # Commit the changes
             db.session.commit()
             return shipment
         else:
