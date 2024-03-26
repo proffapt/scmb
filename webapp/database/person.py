@@ -4,6 +4,7 @@ from database import db
 from typing import List
 from models.person import *
 from models.error import DB_Error
+from models.certificate import Certificate
 
 
 def get_all_persons() -> List[Person] | DB_Error:
@@ -95,7 +96,13 @@ def delete_person(username: str) -> Person | DB_Error:
     try:
         person: Person | DB_Error = get_person(username)
         if isinstance(person, Person):
+            # TODO: Also delete corresponding Person
+            # Delete the connected entries in Certificate table
+            db.session.query(Certificate).filter(
+                Certificate.issuer == username).delete()
+            # Delete the person entry
             db.session.delete(person)
+            # Commit the changes
             db.session.commit()
             return person
         else:
