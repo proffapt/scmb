@@ -36,6 +36,24 @@ All the endpoints concerning products lie under `http://{ip/domain}/product/`.
 
 #### POST and PUT
 
+- Send a _post_ or a _put_ request on the endpoint (`/product/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "code": "P1", 
+    "name": "Mango"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -sS -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "code":"P1", 
+          "name":"Apple"
+        }' \
+    http://{ip/domain}/product
+  ```
+
 ### Supply Chain
 
 All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`. 
@@ -67,6 +85,22 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
   ```
 
 #### POST and PUT
+
+- Send a _post_ or a _put_ request on the endpoint (`/sc/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "name": "Vistara :: London<>Mumbai"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -sS -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "name":"Vistara :: London<>Mumbai"
+        }' \
+    http://{ip/domain}/sc
+  ```
 
 ### Shipment
 
@@ -124,6 +158,33 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 
 #### POST and PUT
 
+- Send a _post_ or a _put_ request on the endpoint (`/shipment/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "code": "S1",
+    "supplychain": 1,
+    "product": "P1",
+    "quantity": 100,
+    "quantity_unit": "kg",
+    "acceptable_quality_lower_bound": 90,
+    "acceptable_quality_upper_bound": 95,
+    "expected_quality": 92
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -X POST -H "Content-Type: application/json" -d '{
+    "code": "S1",
+    "supplychain": 1,
+    "product": "P1",
+    "quantity": 100,
+    "quantity_unit": "kg",
+    "acceptable_quality_lower_bound": 90,
+    "acceptable_quality_upper_bound": 95,
+    "expected_quality": 92
+  }' http://{ip/domain}/shipment
+  ```
+
 ### Shipment Metadata
 
 All the endpoints concerning shipment metadata lie under `http://{ip/domain}/metadata/`. 
@@ -163,6 +224,30 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/met
   ```
 
 #### POST and PUT
+
+- Send a _post_ or a _put_ request on the endpoint (`/metadata/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "shipment": "S1",
+    "latitude": "40.7128",
+    "longitude": "-74.0060",
+    "temperature": "25°C",
+    "quality": 95
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+      "shipment": "S1",
+      "latitude": "40.7128",
+      "longitude": "-74.0060",
+      "temperature": "25°C",
+      "quality": 95
+    }' \
+    http://{ip/domain}/metadata
+  ```
 
 ### Shipment Events
 
@@ -204,6 +289,24 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/event
 
 #### POST and PUT
 
+- Send a _post_ or a _put_ request on the endpoint (`/event/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "shipment": "S1",
+    "event": "Arrived at warehouse"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "shipment": "S1",
+          "event": "Arrived at warehouse"
+        }' \
+    http://{ip/domain}/event
+  ```
+
 ### Person
 
 All the endpoints concerning person lie under `http://{ip/domain}/person/`. 
@@ -236,7 +339,37 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
 
 #### POST and PUT
 
-### Certificates
+- Send a _post_ or a _put_ request on the endpoint (`/person/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "username": "proffapt",
+    "email": "proffapt@gmail.com",
+    "password": "proffapt@scmb",
+    "first_name": "Arpit",
+    "last_name": "Bhardwaj",
+    "address": "F-211 JCB Hall",
+    "phone": "1234567890",
+    "organisation": "IS LAB"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "username": "proffapt",
+          "email": "proffapt@gmail.com",
+          "password": "proffapt@scmb",
+          "first_name": "Arpit",
+          "last_name": "Bhardwaj",
+          "address": "F-211 JCB Hall",
+          "phone": "1234567890",
+          "organisation": "IS LAB"
+        }' \
+    http://{ip/domain}/person
+  ```
+
+### Certificate
 
 All the endpoints concerning shipment certificates lie under `http://{ip/domain}/certificate/`. 
 
@@ -291,3 +424,23 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
   ```
 
 #### POST and PUT
+
+- Send a _post_ or a _put_ request on the endpoint (`/certificate/`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "shipment": "S1", 
+    "issuer": "proffapt", 
+    "pdf_data": "test.pdf"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```curl
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "shipment": "S1", 
+          "issuer": "proffapt", 
+          "pdf_data": "test.pdf"
+        }' \
+    http://{ip/domain}/certificate
+  ```
