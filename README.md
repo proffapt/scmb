@@ -14,6 +14,7 @@ This is repository container the backend codebase for the project named "Supply 
 └── webapp
     ├── api
     │   ├── __init__.py    (API endpoint definitions (mapping endpoints with the function definitions))
+    │   ├── login.py       (API ednpoint function definitions to perform authentication and generate jwt)
     │   ├── ...
     │   └── supplychain.py (API endpoint function definitions concerning SUPPLYCHAIN table)
     ├── database
@@ -57,6 +58,27 @@ This is repository container the backend codebase for the project named "Supply 
 ## API Usage
 
 The documentation will have `{ip/domain}` referring to the **IP Address/Domain Name** of the machine where this backend is hosted.
+
+### Login
+
+- The endpoints concerning login is `http://{ip/domain}/login`. 
+- Send a _post_ request on the endpoint (`/login`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "username": "proffapt",
+    "password": "proffapt@scmb"
+  }
+  ```
+- cURL example:
+  ```bash
+  curl -sS -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+            "username": "proffapt",
+            "password": "proffapt@scmb"
+        }' \
+    http://{ip/domain}/login
+  ```
 
 ### Product
 

@@ -7,3 +7,7 @@ class DB_Error(TypedDict):
 
 class API_Error(TypedDict):
     api_error: str
+
+
+class LOGIN_Error(TypedDict):
+    login_error: str

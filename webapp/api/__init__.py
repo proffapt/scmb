@@ -1,4 +1,5 @@
 from flask import Blueprint
+
 from . import (
     product,
     shipment_metadata,
@@ -6,7 +7,8 @@ from . import (
     shipment,
     shipment_event,
     person,
-    certificate
+    certificate,
+    login
 )
 
 api = Blueprint('api', __name__)
@@ -197,4 +199,12 @@ api.add_url_rule(
     view_func=certificate.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_certificate"
+)
+
+# Endpoints related to login
+api.add_url_rule(
+    "/login",
+    view_func=login.login,
+    methods=["POST"],
+    endpoint="login"
 )
