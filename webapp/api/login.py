@@ -3,7 +3,7 @@ import jwt
 import bcrypt
 from models.person import Person
 from database.person import get_person
-from datetime import datetime, timedelta
+from datetime import datetime, timedelta, UTC
 from flask import Response, jsonify, request
 from models.error import API_Error, DB_Error, LOGIN_Error
 
@@ -11,8 +11,8 @@ from models.error import API_Error, DB_Error, LOGIN_Error
 def generate_jwt(username: str):
     payload = {
         'sub': username,
-        'exp': datetime.now() + timedelta(hours=1),
-        'iat': datetime.now()
+        'exp': datetime.now(UTC) + timedelta(hours=1),
+        'iat': datetime.now(UTC) - timedelta(seconds=10)
     }
 
     JWT_SECRET_KEY = os.environ.get("JWT_SECRET_KEY")
