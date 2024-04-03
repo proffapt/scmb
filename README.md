@@ -4,6 +4,8 @@ This is repository container the backend codebase for the project named "Supply 
 
 ## Codebase
 
+Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a55b1f3d4062c5b677b
+
 ### Structure
 
 ```graphql
