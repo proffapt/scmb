@@ -158,9 +158,9 @@ api.add_url_rule(
 )
 api.add_url_rule(
     "/person",
-    view_func=person.create_or_update,
-    methods=["POST", "PUT"],
-    endpoint="create_or_update_person"
+    view_func=person.update,
+    methods=["PUT"],
+    endpoint="update_person"
 )
 
 # Endpoints related to certificates
@@ -201,10 +201,16 @@ api.add_url_rule(
     endpoint="create_or_update_certificate"
 )
 
-# Endpoints related to login
+# Endpoints related to login and signup
 api.add_url_rule(
     "/login",
     view_func=login.login,
     methods=["POST"],
     endpoint="login"
+)
+api.add_url_rule(
+    "/signup",
+    view_func=person.create,
+    methods=["POST"],
+    endpoint="create_person"
 )

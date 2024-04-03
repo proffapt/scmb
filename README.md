@@ -62,6 +62,39 @@ Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a
 
 The documentation will have `{ip/domain}` referring to the **IP Address/Domain Name** of the machine where this backend is hosted.
 
+### Signup
+
+- The endpoints concerning signup is `http://{ip/domain}/signup`. 
+- Send a _post_ request on the endpoint (`/signup`) with following JSON (`application/json`) data in request body:
+  ```json
+  {
+    "username": "proffapt",
+    "email": "proffapt@gmail.com",
+    "password": "proffapt@scmb",
+    "first_name": "Arpit",
+    "last_name": "Bhardwaj",
+    "address": "F-211 JCB Hall",
+    "phone": "1234567890",
+    "organisation": "IS LAB"
+  }
+  ```
+- cURL example:
+  ```bash
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -d '{
+          "username": "proffapt",
+          "email": "proffapt@gmail.com",
+          "password": "proffapt@scmb",
+          "first_name": "Arpit",
+          "last_name": "Bhardwaj",
+          "address": "F-211 JCB Hall",
+          "phone": "1234567890",
+          "organisation": "IS LAB"
+        }' \
+    http://{ip/domain}/signup
+  ```
+  
 ### Login
 
 - The endpoints concerning login is `http://{ip/domain}/login`. 
@@ -429,9 +462,12 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
   curl -sS -X DELETE "http://{ip/domain}/person/proffapt"
   ```
 
-#### POST and PUT
+#### PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/person/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
+> [!Note]
+> This endpoint doesn't support `POST` method as that is covered by [signup](#signup)
+
+- Send a _put_ request on the endpoint (`/person/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "username": "proffapt",
@@ -444,9 +480,9 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
     "organisation": "IS LAB"
   }
   ```
-- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+- cURL example:
   ```bash
-  curl -X POST \
+  curl -X PUT \
     -H "Content-Type: application/json" \
     -H "Authorization: Bearer <auth-token>" \
     -d '{
