@@ -10,6 +10,8 @@ Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a
 
 ```graphql
 .
+├── .env                   (Environment file)
+├── .env.example           (Example environment file, use this as template to create (.env) file)
 ├── postgres
 │   ├── dummy_data.sql     (Dummy data to populate database on first run)
 │   └── schdema.sql        (Database scdhema file)
@@ -48,6 +50,7 @@ Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a
    POSTGRES_USER=postgres
    POSTGRES_PASSWORD=postgres-scmb-db
    HASH_SALT=bcrypt_hash_salt
+   JWT_SECRET_KEY=jwt_secret
    ```
 4. Build the docker images
    ```bash
