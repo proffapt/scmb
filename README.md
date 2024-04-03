@@ -16,6 +16,7 @@ Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a
 └── webapp
     ├── api
     │   ├── __init__.py    (API endpoint definitions (mapping endpoints with the function definitions))
+    │   ├── auth.py        (API ednpoint wrapper function definitions to perform various authorisations)
     │   ├── login.py       (API ednpoint function definitions to perform authentication and generate jwt)
     │   ├── ...
     │   └── supplychain.py (API endpoint function definitions concerning SUPPLYCHAIN table)
@@ -81,6 +82,12 @@ The documentation will have `{ip/domain}` referring to the **IP Address/Domain N
         }' \
     http://{ip/domain}/login
   ```
+- If successfull, a `jwt_token` will be provided in response. This token is required to be sent in Header of any requests made. Following is an example response:
+  ```json
+  {
+    "jwt_token": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJzdWIiOiJwcm9mZmFwdCIsImV4cCI6MTcxMjE4MzE0NCwiaWF0IjoxNzEyMTc5NTM0fQ.WsulF1uI9Vz3kSPf_f8QWWI0BeD3_MAGaAzC6eu-TMU"
+  }
+  ```
 
 ### Product
 
@@ -125,6 +132,7 @@ All the endpoints concerning products lie under `http://{ip/domain}/product/`.
   ```bash
   curl -sS -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
     -d '{
           "code":"P1", 
           "name":"Apple"
@@ -164,7 +172,7 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/sc/`) with following JSON (`application/json`) data in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/sc/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "name": "Vistara :: London<>Mumbai"
@@ -174,6 +182,7 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
   ```bash
   curl -sS -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
     -d '{
           "name":"Vistara :: London<>Mumbai"
         }' \
@@ -236,7 +245,7 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/shipment/`) with following JSON (`application/json`) data in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/shipment/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "code": "S1",
@@ -251,16 +260,19 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
   ```
 - cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
   ```bash
-  curl -X POST -H "Content-Type: application/json" -d '{
-    "code": "S1",
-    "supplychain": 1,
-    "product": "P1",
-    "quantity": 100,
-    "quantity_unit": "kg",
-    "acceptable_quality_lower_bound": 90,
-    "acceptable_quality_upper_bound": 95,
-    "expected_quality": 92
-  }' http://{ip/domain}/shipment
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
+    -d '{
+        "code": "S1",
+        "supplychain": 1,
+        "product": "P1",
+        "quantity": 100,
+        "quantity_unit": "kg",
+        "acceptable_quality_lower_bound": 90,
+        "acceptable_quality_upper_bound": 95,
+        "expected_quality": 92
+    }' http://{ip/domain}/shipment
   ```
 
 ### Shipment Metadata
@@ -303,7 +315,7 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/met
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/metadata/`) with following JSON (`application/json`) data in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/metadata/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "shipment": "S1",
@@ -317,6 +329,7 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/met
   ```bash
   curl -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
     -d '{
       "shipment": "S1",
       "latitude": "40.7128",
@@ -367,7 +380,7 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/event
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/event/`) with following JSON (`application/json`) data in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/event/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "shipment": "S1",
@@ -378,6 +391,7 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/event
   ```bash
   curl -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
     -d '{
           "shipment": "S1",
           "event": "Arrived at warehouse"
@@ -417,7 +431,7 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/person/`) with following JSON (`application/json`) data in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/person/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "username": "proffapt",
@@ -434,6 +448,7 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
   ```bash
   curl -X POST \
     -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
     -d '{
           "username": "proffapt",
           "email": "proffapt@gmail.com",
@@ -503,7 +518,7 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/certificate/`) with following files data (`mutipart/form-data`) in files request:
+- Send a _post_ or a _put_ request on the endpoint (`/certificate/`) with following files data (`mutipart/form-data`) along with `Authorization: Bearer <auth-token>` header in files request:
   ```json
     "pdf_file=@test.pdf"
     "pdf_name=test.pdf"
@@ -514,6 +529,7 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
   ```bash
   curl -X POST \
     -H "Content-Type: multipart/form-data" \
+    -H "Authorization: Bearer <auth-token>" \
     -F "pdf_file=@test.pdf" \
     -F "pdf_name=test.pdf" \
     -F "shipment=S1" \

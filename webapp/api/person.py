@@ -1,9 +1,11 @@
 from models.error import API_Error
 from models.person import *
 from database.person import *
+from api.auth import login_authorisation
 from flask import Response, request, jsonify
 
 
+@login_authorisation
 def get(username: str) -> tuple[Response, int] | tuple[API_Error, int]:
     if username.casefold() == "all":
         try:
@@ -28,6 +30,7 @@ def get(username: str) -> tuple[Response, int] | tuple[API_Error, int]:
             return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
     data = request.get_json()
     if not data:
@@ -63,6 +66,7 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def delete(username: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resp: Person | DB_Error = delete_person(username)

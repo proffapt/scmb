@@ -1,9 +1,11 @@
 from models.supplychain import *
 from database.supplychain import *
 from models.error import API_Error
+from api.auth import login_authorisation
 from flask import Response, request, jsonify
 
 
+@login_authorisation
 def get(id: int | str) -> tuple[Response, int] | tuple[API_Error, int]:
     if isinstance(id, str) and id.casefold() == "all":
         try:
@@ -28,6 +30,7 @@ def get(id: int | str) -> tuple[Response, int] | tuple[API_Error, int]:
             return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
     data = request.get_json()
     if not data:
@@ -55,6 +58,7 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def delete(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resp: Supplychain | DB_Error = delete_supply_chain(id)

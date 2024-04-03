@@ -1,10 +1,12 @@
 import os
 from models.certificate import *
 from database.certificate import *
+from api.auth import login_authorisation
 from models.error import API_Error, DB_Error
 from flask import Response, request, jsonify, send_file
 
 
+@login_authorisation
 def get(id: int | str) -> tuple[Response, int] | tuple[API_Error, int]:
     if isinstance(id, str) and id.casefold() == "all":
         try:
@@ -29,6 +31,7 @@ def get(id: int | str) -> tuple[Response, int] | tuple[API_Error, int]:
             return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def get_all_by_shipment(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resps: List[Certificate] | DB_Error = get_all_certificates_by_shipment(
@@ -43,6 +46,7 @@ def get_all_by_shipment(code: str) -> tuple[Response, int] | tuple[API_Error, in
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def get_all_by_issuer(username: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resps: List[Certificate] | DB_Error = get_all_certificates_by_issuer(
@@ -57,6 +61,7 @@ def get_all_by_issuer(username: str) -> tuple[Response, int] | tuple[API_Error, 
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
     if 'pdf_file' not in request.files:
         return jsonify({"api_error": "A pdf certificate was not provided"}), 400
@@ -107,6 +112,7 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def delete(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         pdf_path: str | DB_Error = get_certificate_pdf_path(id)
@@ -122,6 +128,7 @@ def delete(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def download(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         pdf_path: str | DB_Error = get_certificate_pdf_path(id)

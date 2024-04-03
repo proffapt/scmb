@@ -1,9 +1,11 @@
 from models.shipment import *
 from database.shipment import *
 from models.error import API_Error
+from api.auth import login_authorisation
 from flask import Response, request, jsonify
 
 
+@login_authorisation
 def get(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     if code.casefold() == "all":
         try:
@@ -28,6 +30,7 @@ def get(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
             return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def get_all_by_product(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resps: List[Shipment] | DB_Error = get_all_shipments_by_product(
@@ -42,6 +45,7 @@ def get_all_by_product(code: str) -> tuple[Response, int] | tuple[API_Error, int
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def get_all_by_supplychain(id: int) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resps: List[Shipment] | DB_Error = get_all_shipments_by_supplychain(
@@ -56,6 +60,7 @@ def get_all_by_supplychain(id: int) -> tuple[Response, int] | tuple[API_Error, i
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def get_all_by_supplychain_product(id: int, code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resps: List[Shipment] | DB_Error = get_all_shipments_by_supplychain_and_product(
@@ -70,6 +75,7 @@ def get_all_by_supplychain_product(id: int, code: str) -> tuple[Response, int] |
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
     data = request.get_json()
     if not data:
@@ -107,6 +113,7 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def delete(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resp: Shipment | DB_Error = delete_shipment(code)

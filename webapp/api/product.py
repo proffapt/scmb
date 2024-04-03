@@ -1,9 +1,11 @@
 from models.product import *
 from database.product import *
 from models.error import API_Error
+from api.auth import login_authorisation
 from flask import Response, request, jsonify
 
 
+@login_authorisation
 def get(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     if code.casefold() == "all":
         try:
@@ -28,6 +30,7 @@ def get(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
             return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
     data = request.get_json()
     if not data:
@@ -53,6 +56,7 @@ def create_or_update() -> tuple[Response, int] | tuple[API_Error, int]:
         return jsonify({"api_error": str(e)}), 500
 
 
+@login_authorisation
 def delete(code: str) -> tuple[Response, int] | tuple[API_Error, int]:
     try:
         db_resp: Product | DB_Error = delete_product(code)
