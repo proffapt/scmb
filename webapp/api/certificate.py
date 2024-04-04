@@ -1,8 +1,8 @@
 import os
 from models.certificate import *
 from database.certificate import *
-from api.auth import login_authorisation
 from models.error import API_Error, DB_Error
+from middleware.auth import login_authorisation
 from flask import Response, request, jsonify, send_file
 
 

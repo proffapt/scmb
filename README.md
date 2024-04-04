@@ -18,10 +18,10 @@ Detailed dbdiagram can be found here: https://dbdiagram.io/d/supply-chain-65e99a
 └── webapp
     ├── api
     │   ├── __init__.py    (API endpoint definitions (mapping endpoints with the function definitions))
-    │   ├── auth.py        (API ednpoint wrapper function definitions to perform various authorisations)
-    │   ├── login.py       (API ednpoint function definitions to perform authentication and generate jwt)
     │   ├── ...
     │   └── supplychain.py (API endpoint function definitions concerning SUPPLYCHAIN table)
+    ├── middleware
+    │   └── auth.py        (API ednpoint wrapper function definitions to perform various authorisations)
     ├── database
     │   ├── __init__.py    (Contains flask_SQLAlchemy db object definition)
     │   ├── ...

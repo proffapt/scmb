@@ -13,9 +13,11 @@ COPY app.py .
 
 COPY models/ ./models/
 
-COPY api/ ./api/
-
 COPY database/ ./database/
+
+COPY middleware/ ./middleware/
+
+COPY api/ ./api/
 
 EXPOSE 8000
 

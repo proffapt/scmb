@@ -1,8 +1,8 @@
 from models.error import API_Error
 from models.shipment_event import *
 from database.shipment_event import *
-from api.auth import login_authorisation
 from flask import Response, request, jsonify
+from middleware.auth import login_authorisation
 
 
 @login_authorisation

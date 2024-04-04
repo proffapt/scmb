@@ -1,8 +1,8 @@
 from models.error import API_Error
 from models.person import *
 from database.person import *
-from api.auth import login_authorisation
 from flask import Response, request, jsonify
+from middleware.auth import login_authorisation
 
 
 @login_authorisation
