@@ -3,3 +3,4 @@ Flask-SQLAlchemy
 psycopg2
 bcrypt
 pyjwt
+flask-cors
