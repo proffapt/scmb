@@ -435,6 +435,126 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/shipm
     http://{ip/domain}/shipment/event/
   ```
 
+### Shipment Health Monitoring Device
+
+All the endpoints concerning shipment health monitoring device lie under `http://{ip/domain}/shmd/`. 
+
+#### GET
+
+##### Unique
+
+- Send a _get_ request on the endpoint with the unique code of a device - `/shmd/<SHIPMENT_HEALTH_MONITORING_DEVICE_CODE>`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/SHM001"
+  ```
+
+##### All
+
+- Send a _get_ request on the endpoint with "all" as arguement - `/shmd/all`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/all"
+  ```
+
+##### By Shipment
+
+- Send a _get_ request on the endpoint with the unique code of a shipment - `/shmd/shipment/<SHIPMENT_CODE>`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/shipment/S1"
+  ```
+
+#### DELETE
+
+- Send a _delete_ request on the endpoint with the unique code of a device - `/shmd/shipment/<SHIPMENT_HEALTH_MONITORING_DEVICE_CODE>`
+- cURL example:
+  ```bash
+  curl -sS -X DELETE "http://{ip/domain}/shmd/SHM001"
+  ```
+
+#### POST and PUT
+
+- Send a _post_ or a _put_ request on the endpoint (`/shmd/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
+  ```json
+  {
+    "code": "SHM001",
+    "shipment": "S1",
+    "description": "Temperature Sensor"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```bash
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
+    -d '{
+        "code": "SHM001",
+        "shipment": "S1",
+        "description": "Temperature Sensor"
+    }' \
+    http://{ip/domain}/shmd/
+  ```
+
+### Shipment Health Monitoring Device Event
+
+All the endpoints concerning shipment health monitoring device events lie under `http://{ip/domain}/shmd/event/`. 
+
+#### GET
+
+##### Unique
+
+- Send a _get_ request on the endpoint with the unique id of a event - `/shmd/event/<EVENT_INT_ID>`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/event/1"
+  ```
+
+##### All
+
+- Send a _get_ request on the endpoint with "all" as arguement - `/shmd/all`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/event/all"
+  ```
+
+##### By Sensor Health Monitoring Device
+
+- Send a _get_ request on the endpoint with the unique code of a shmd device - `/shmd/event/sensor/<SHMD_CODE>`
+- cURL example:
+  ```bash
+  curl -sS -X GET "http://{ip/domain}/shmd/event/sensor/SHM001"
+  ```
+
+#### DELETE
+
+- Send a _delete_ request on the endpoint with the unique id of an event - `/shmd/shipment/<EVENT_INT_ID>`
+- cURL example:
+  ```bash
+  curl -sS -X DELETE "http://{ip/domain}/shmd/event/1"
+  ```
+
+#### POST and PUT
+
+- Send a _post_ or a _put_ request on the endpoint (`/shmd/event/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
+  ```json
+  {
+    "sensor_health_monitoring_device": "SHM001",
+    "remarks": "Dangerous Level"
+  }
+  ```
+- cURL example (`POST` - for `PUT` replace _POST_ with _PUT_ in the command):
+  ```bash
+  curl -X POST \
+    -H "Content-Type: application/json" \
+    -H "Authorization: Bearer <auth-token>" \
+    -d '{
+        "sensor_health_monitoring_device": "SHM001",
+        "remarks": "Dangerous Level"
+    }' \
+    http://{ip/domain}/shmd/event/
+  ```
+
 ### Person
 
 All the endpoints concerning person lie under `http://{ip/domain}/person/`. 
