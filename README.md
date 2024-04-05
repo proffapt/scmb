@@ -136,7 +136,9 @@ All the endpoints concerning products lie under `http://{ip/domain}/product/`.
 - Send a _get_ request on the endpoint with the unique code of a product - `/product/<PRODUCT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/product/P1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/product/P1"
   ```
 
 ##### All
@@ -144,7 +146,9 @@ All the endpoints concerning products lie under `http://{ip/domain}/product/`.
 - Send a _get_ request on the endpoint with "all" as arguement - `/product/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/product/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/product/all"
   ```
 
 #### DELETE
@@ -152,7 +156,9 @@ All the endpoints concerning products lie under `http://{ip/domain}/product/`.
 - Send a _delete_ request on the endpoint with the unique code of a product - `/product/<PRODUCT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/product/P1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/product/P1"
   ```
 
 #### POST and PUT
@@ -187,7 +193,9 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
 - Send a _get_ request on the endpoint with the unique id of a Supply Chain - `/product/<SUPPLY_CHAIN_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/sc/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/sc/1"
   ```
 
 ##### All
@@ -195,7 +203,9 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
 - Send a _get_ request on the endpoint with "all" as arguement - `/sc/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/sc/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/sc/all"
   ```
 
 #### DELETE
@@ -203,7 +213,9 @@ All the endpoints concerning supplychain lie under `http://{ip/domain}/sc/`.
 - Send a _delete_ request on the endpoint with the unique code of a supplychain - `/sc/<SUPPLY_CHAIN_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/sc/1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/sc/1"
   ```
 
 #### POST and PUT
@@ -236,7 +248,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _get_ request on the endpoint with the unique code of a shipment - `/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/S1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/S1"
   ```
 
 ##### All
@@ -244,7 +258,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _get_ request on the endpoint with "all" as arguement - `/shipment/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/all"
   ```
 
 ##### By Supplychain
@@ -252,7 +268,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _get_ request on the endpoint with the unique id of a supplychain - `/shipment/sc/<SUPPLY_CHAIN_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/sc/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/sc/1"
   ```
 
 ##### By Product
@@ -260,7 +278,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _get_ request on the endpoint with the unique code of a poroduct - `/shipment/product/<PRODUCT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/product/P1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/product/P1"
   ```
 
 ##### By Supplychain and Product
@@ -268,7 +288,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _get_ request on the endpoint with the unique id of a supplychain and code for product - `/shipment/sc/<SUPPLY_CHAIN_INT_ID>/product/<PRODUCT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/sc/1/product/P1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/sc/1/product/P1"
   ```
 
 #### DELETE
@@ -276,7 +298,9 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 - Send a _delete_ request on the endpoint with the unique code of a shipment - `/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/shipment/S1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/S1"
   ```
 
 #### POST and PUT
@@ -322,7 +346,9 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/shi
 - Send a _get_ request on the endpoint with the unique id of a metadata - `/shipment/metadata/<METADATA_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/metadata/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/metadata/1"
   ```
 
 ##### All
@@ -330,7 +356,9 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/shi
 - Send a _get_ request on the endpoint with "all" as arguement - `/shipment/metadata/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/metadata/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/metadata/all"
   ```
 
 ##### By Shipment
@@ -338,7 +366,9 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/shi
 - Send a _get_ request on the endpoint with the unique code of a shipment - `/shipment/metadata/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/metadata/shipment/S1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/metadata/shipment/S1"
   ```
 
 #### DELETE
@@ -346,7 +376,9 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/shi
 - Send a _delete_ request on the endpoint with the unique id of a metadata - `/shipment/metadata/<METADATA_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/shipment/metadata/1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/metadata/1"
   ```
 
 #### POST and PUT
@@ -387,7 +419,9 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/shipm
 - Send a _get_ request on the endpoint with the unique id of an event - `/shipment/event/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/event/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/event/1"
   ```
 
 ##### All
@@ -395,7 +429,9 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/shipm
 - Send a _get_ request on the endpoint with "all" as arguement - `/shipment/event/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/event/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/event/all"
   ```
 
 ##### By Shipment
@@ -403,7 +439,9 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/shipm
 - Send a _get_ request on the endpoint with the unique code of a shipment - `/shipment/event/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shipment/event/shipment/S1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/event/shipment/S1"
   ```
 
 #### DELETE
@@ -411,7 +449,9 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/shipm
 - Send a _delete_ request on the endpoint with the unique id of an event - `/shipment/event/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/shipment/event/1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shipment/event/1"
   ```
 
 #### POST and PUT
@@ -446,7 +486,9 @@ All the endpoints concerning shipment health monitoring device lie under `http:/
 - Send a _get_ request on the endpoint with the unique code of a device - `/shmd/<SHIPMENT_HEALTH_MONITORING_DEVICE_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/SHM001"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/SHM001"
   ```
 
 ##### All
@@ -454,7 +496,9 @@ All the endpoints concerning shipment health monitoring device lie under `http:/
 - Send a _get_ request on the endpoint with "all" as arguement - `/shmd/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/all"
   ```
 
 ##### By Shipment
@@ -462,7 +506,9 @@ All the endpoints concerning shipment health monitoring device lie under `http:/
 - Send a _get_ request on the endpoint with the unique code of a shipment - `/shmd/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/shipment/S1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/shipment/S1"
   ```
 
 #### DELETE
@@ -470,7 +516,9 @@ All the endpoints concerning shipment health monitoring device lie under `http:/
 - Send a _delete_ request on the endpoint with the unique code of a device - `/shmd/shipment/<SHIPMENT_HEALTH_MONITORING_DEVICE_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/shmd/SHM001"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/SHM001"
   ```
 
 #### POST and PUT
@@ -507,7 +555,9 @@ All the endpoints concerning shipment health monitoring device events lie under 
 - Send a _get_ request on the endpoint with the unique id of a event - `/shmd/event/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/event/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/event/1"
   ```
 
 ##### All
@@ -515,7 +565,9 @@ All the endpoints concerning shipment health monitoring device events lie under 
 - Send a _get_ request on the endpoint with "all" as arguement - `/shmd/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/event/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/event/all"
   ```
 
 ##### By Sensor Health Monitoring Device
@@ -523,7 +575,9 @@ All the endpoints concerning shipment health monitoring device events lie under 
 - Send a _get_ request on the endpoint with the unique code of a shmd device - `/shmd/event/sensor/<SHMD_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/shmd/event/sensor/SHM001"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/event/sensor/SHM001"
   ```
 
 #### DELETE
@@ -531,7 +585,9 @@ All the endpoints concerning shipment health monitoring device events lie under 
 - Send a _delete_ request on the endpoint with the unique id of an event - `/shmd/shipment/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/shmd/event/1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/shmd/event/1"
   ```
 
 #### POST and PUT
@@ -566,7 +622,9 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
 - Send a _get_ request on the endpoint with the unique username of a person - `/person/<USERNAME>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/person/proffapt"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/person/proffapt"
   ```
 
 ##### All
@@ -574,7 +632,9 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
 - Send a _get_ request on the endpoint with "all" as arguement - `/person/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/person/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/person/all"
   ```
 
 #### DELETE
@@ -582,7 +642,9 @@ All the endpoints concerning person lie under `http://{ip/domain}/person/`.
 - Send a _delete_ request on the endpoint with the unique username of a person - `/person/<USERNAME>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/person/proffapt"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/person/proffapt"
   ```
 
 #### PUT
@@ -632,7 +694,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _get_ request on the endpoint with the unique id of a certificate - `/certificate/<CERTIFICATE_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/certificate/1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/1"
   ```
 
 ##### All
@@ -640,7 +704,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _get_ request on the endpoint with "all" as arguement - `/certificate/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/certificate/all"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/all"
   ```
 
 ##### By Shipment
@@ -648,7 +714,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _get_ request on the endpoint with the unique code of a shipment - `/certificate/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/certificate/shipment/S1"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/shipment/S1"
   ```
 
 ##### By Issuer
@@ -656,7 +724,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _get_ request on the endpoint with the unique username of the issuer - `/certificate/issuer/<USERNAME>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/certificate/issuer/proffapt"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/issuer/proffapt"
   ```
 
 ##### Download
@@ -664,7 +734,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _get_ request on the endpoint with the unique id of the certificate - `/certificate/<CERTIFICATE_INT_ID>/download`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/certificate/1/download"
+  curl -sS -X GET \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/1/download"
   ```
 
 #### DELETE
@@ -672,7 +744,9 @@ All the endpoints concerning shipment certificates lie under `http://{ip/domain}
 - Send a _delete_ request on the endpoint with the unique id of an event - `/certificate/<CERTIFICATE_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/certificate/1"
+  curl -sS -X DELETE \
+    -H "Authorization: Bearer <auth-token>" \
+    "http://{ip/domain}/certificate/1"
   ```
 
 #### POST and PUT
