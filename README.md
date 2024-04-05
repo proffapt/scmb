@@ -313,45 +313,45 @@ All the endpoints concerning shipment lie under `http://{ip/domain}/shipment/`.
 
 ### Shipment Metadata
 
-All the endpoints concerning shipment metadata lie under `http://{ip/domain}/metadata/`. 
+All the endpoints concerning shipment metadata lie under `http://{ip/domain}/shipment/metadata/`. 
 
 #### GET
 
 ##### Unique
 
-- Send a _get_ request on the endpoint with the unique id of a metadata - `/metadata/<METADATA_INT_ID>`
+- Send a _get_ request on the endpoint with the unique id of a metadata - `/shipment/metadata/<METADATA_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/metadata/1"
+  curl -sS -X GET "http://{ip/domain}/shipment/metadata/1"
   ```
 
 ##### All
 
-- Send a _get_ request on the endpoint with "all" as arguement - `/metadata/all`
+- Send a _get_ request on the endpoint with "all" as arguement - `/shipment/metadata/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/metadata/all"
+  curl -sS -X GET "http://{ip/domain}/shipment/metadata/all"
   ```
 
 ##### By Shipment
 
-- Send a _get_ request on the endpoint with the unique code of a shipment - `/metadata/shipment/<SHIPMENT_CODE>`
+- Send a _get_ request on the endpoint with the unique code of a shipment - `/shipment/metadata/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/metadata/shipment/S1"
+  curl -sS -X GET "http://{ip/domain}/shipment/metadata/shipment/S1"
   ```
 
 #### DELETE
 
-- Send a _delete_ request on the endpoint with the unique id of a metadata - `/metadata/<METADATA_INT_ID>`
+- Send a _delete_ request on the endpoint with the unique id of a metadata - `/shipment/metadata/<METADATA_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/metadata/1"
+  curl -sS -X DELETE "http://{ip/domain}/shipment/metadata/1"
   ```
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/metadata/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/shipment/metadata/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "shipment": "S1",
@@ -373,50 +373,50 @@ All the endpoints concerning shipment metadata lie under `http://{ip/domain}/met
       "temperature": "25°C",
       "quality": 95
     }' \
-    http://{ip/domain}/metadata
+    http://{ip/domain}/shipment/metadata/
   ```
 
 ### Shipment Events
 
-All the endpoints concerning shipment events lie under `http://{ip/domain}/event/`. 
+All the endpoints concerning shipment events lie under `http://{ip/domain}/shipment/event/`. 
 
 #### GET
 
 ##### Unique
 
-- Send a _get_ request on the endpoint with the unique id of an event - `/event/<EVENT_INT_ID>`
+- Send a _get_ request on the endpoint with the unique id of an event - `/shipment/event/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/event/1"
+  curl -sS -X GET "http://{ip/domain}/shipment/event/1"
   ```
 
 ##### All
 
-- Send a _get_ request on the endpoint with "all" as arguement - `/event/all`
+- Send a _get_ request on the endpoint with "all" as arguement - `/shipment/event/all`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/event/all"
+  curl -sS -X GET "http://{ip/domain}/shipment/event/all"
   ```
 
 ##### By Shipment
 
-- Send a _get_ request on the endpoint with the unique code of a shipment - `/event/shipment/<SHIPMENT_CODE>`
+- Send a _get_ request on the endpoint with the unique code of a shipment - `/shipment/event/shipment/<SHIPMENT_CODE>`
 - cURL example:
   ```bash
-  curl -sS -X GET "http://{ip/domain}/event/shipment/S1"
+  curl -sS -X GET "http://{ip/domain}/shipment/event/shipment/S1"
   ```
 
 #### DELETE
 
-- Send a _delete_ request on the endpoint with the unique id of an event - `/event/<EVENT_INT_ID>`
+- Send a _delete_ request on the endpoint with the unique id of an event - `/shipment/event/<EVENT_INT_ID>`
 - cURL example:
   ```bash
-  curl -sS -X DELETE "http://{ip/domain}/event/1"
+  curl -sS -X DELETE "http://{ip/domain}/shipment/event/1"
   ```
 
 #### POST and PUT
 
-- Send a _post_ or a _put_ request on the endpoint (`/event/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
+- Send a _post_ or a _put_ request on the endpoint (`/shipment/event/`) with following JSON (`application/json`) data along with `Authorization: Bearer <auth-token>` header in request body:
   ```json
   {
     "shipment": "S1",
@@ -432,7 +432,7 @@ All the endpoints concerning shipment events lie under `http://{ip/domain}/event
           "shipment": "S1",
           "event": "Arrived at warehouse"
         }' \
-    http://{ip/domain}/event
+    http://{ip/domain}/shipment/event/
   ```
 
 ### Person

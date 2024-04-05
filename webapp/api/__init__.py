@@ -95,25 +95,25 @@ api.add_url_rule(
 
 # Endpoints related to metadata of shipment
 api.add_url_rule(
-    "/metadata/<string:id>",
+    "/shipment/metadata/<string:id>",
     view_func=shipment_metadata.get,
     methods=["GET"],
     endpoint="get_metadata"
 )
 api.add_url_rule(
-    "/metadata/shipment/<string:code>",
+    "/shipment/metadata/shipment/<string:code>",
     view_func=shipment_metadata.get_all_by_shipment,
     methods=["GET"],
     endpoint="get_metadata_by_shipment"
 )
 api.add_url_rule(
-    "/metadata/<int:id>",
+    "/shipment/metadata/<int:id>",
     view_func=shipment_metadata.delete,
     methods=["DELETE"],
     endpoint="delete_metadata"
 )
 api.add_url_rule(
-    "/metadata",
+    "/shipment/metadata",
     view_func=shipment_metadata.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_metadata"
@@ -121,25 +121,25 @@ api.add_url_rule(
 
 # Endpoints related to events of shipment
 api.add_url_rule(
-    "/event/<string:id>",
+    "/shipment/event/<string:id>",
     view_func=shipment_event.get,
     methods=["GET"],
     endpoint="get_events"
 )
 api.add_url_rule(
-    "/event/shipment/<string:code>",
+    "/shipment/event/shipment/<string:code>",
     view_func=shipment_event.get_all_by_shipment,
     methods=["GET"],
     endpoint="get_events_by_shipment"
 )
 api.add_url_rule(
-    "/event/<int:id>",
+    "/shipment/event/<int:id>",
     view_func=shipment_event.delete,
     methods=["DELETE"],
     endpoint="delete_events"
 )
 api.add_url_rule(
-    "/event",
+    "/shipment/event",
     view_func=shipment_event.create_or_update,
     methods=["POST", "PUT"],
     endpoint="create_or_update_events"
