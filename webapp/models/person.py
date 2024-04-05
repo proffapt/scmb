@@ -4,7 +4,7 @@ from typing import TypedDict
 
 class Person(db.Model):
     username = db.Column(db.String(50), primary_key=True, nullable=False)
-    email = db.Column(db.String(100), nullable=False)
+    email = db.Column(db.String(100), unique=True, nullable=False)
     password = db.Column(db.String(100), nullable=False)
     first_name = db.Column(db.String(100), nullable=False)
     last_name = db.Column(db.String(100))

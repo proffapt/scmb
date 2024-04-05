@@ -8,7 +8,7 @@
 -- Table: Person
 CREATE TABLE IF NOT EXISTS Person (
     username VARCHAR PRIMARY KEY NOT NULL,
-    email VARCHAR NOT NULL,
+    email VARCHAR UNIQUE NOT NULL,
     password VARCHAR NOT NULL,
     first_name VARCHAR NOT NULL,
     last_name VARCHAR,
@@ -43,16 +43,14 @@ CREATE TABLE IF NOT EXISTS Shipment (
 
 -- Table: RolesMap
 CREATE TABLE IF NOT EXISTS RolesMap (
-    id BIGSERIAL PRIMARY KEY NOT NULL,
-    permissions VARCHAR NOT NULL
+    slug VARCHAR PRIMARY KEY NOT NULL,
+    name VARCHAR UNIQUE NOT NULL
 );
 
 -- Table: Role
 CREATE TABLE IF NOT EXISTS Role (
-    id BIGSERIAL PRIMARY KEY NOT NULL,
     username VARCHAR REFERENCES Person(username) NOT NULL,
-    supplychain BIGINT REFERENCES Supplychain(id) NOT NULL,
-    role BIGINT REFERENCES RolesMap(id) NOT NULL
+    role VARCHAR REFERENCES RolesMap(slug) NOT NULL
 );
 
 -- Table: Certificate

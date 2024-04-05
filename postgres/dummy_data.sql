@@ -95,6 +95,12 @@ VALUES
 
 -- Insert dummy data into Person table
 INSERT INTO Person (username, email, password, first_name, last_name, address, phone, organisation) VALUES
+('super-admin', 'super.admin@scmb.com', 'super-admin', 'Super', 'Admin', '10.29.8.91', '0000000000', 'IS LAB'),
+('admin', 'admin@scmb.com', 'admin', 'Admin', '', '10.29.8.91', '0000000000', 'IS LAB'),
+('supplier', 'supplier@scmb.com', 'supplier', 'Supllier', '', '10.29.8.91', '0000000000', 'IS LAB'),
+('member', 'member@scmb.com', 'member', 'Member', '', '10.29.8.91', '0000000000', 'IS LAB'),
+('distributor', 'distributor@scmb.com', 'distributor', 'Distributor', '', '10.29.8.91', '0000000000', 'IS LAB'),
+('device', 'device@scmb.com', 'device', 'IoT', 'Device', '10.29.8.91', '0000000000', 'IS LAB'),
 ('john_doe', 'john@example.com', 'password123', 'John', 'Doe', '123 Main St, Anytown, USA', '123-456-7890', 'Company A'),
 ('jane_smith', 'jane@example.com', 'password456', 'Jane', 'Smith', '456 Elm St, Othertown, USA', '987-654-3210', 'Company B'),
 ('alice_jackson', 'alice@example.com', 'password789', 'Alice', 'Jackson', '789 Oak St, Anycity, USA', '456-789-0123', 'Company C'),
@@ -104,3 +110,21 @@ INSERT INTO Person (username, email, password, first_name, last_name, address, p
 -- Insert dummy data into Certificate table
 INSERT INTO Certificate (timestamp, shipment, issuer, pdf_path, pdf_hash) VALUES
 ('2024-03-25 10:00:00', 'S1', 'john_doe', '/app/certificates/test.pdf', '1358251341bd5fe67118d310e088e33353e2bc10151ac2eb14aac0aab164db61');
+
+-- Insert dummy data into RolesMap table
+INSERT INTO RolesMap (slug, name) VALUES
+('super-admin', 'Super Administrator'),
+('admin', 'Administrator'),
+('supplier', 'Supplier'),
+('member', 'Member'),
+('distributor', 'Distributor (Shipment)'),
+('device', 'IoT Device');
+
+-- Insert dummy data into Roles table
+INSERT INTO Role (role, username) VALUES
+('super-admin', 'super-admin'),
+('admin', 'admin'),
+('supplier', 'supplier'),
+('member', 'member'),
+('distributor', 'distributor'),
+('device', 'device');

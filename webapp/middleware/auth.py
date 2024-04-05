@@ -5,6 +5,7 @@ from models.person import Person
 from models.error import DB_Error
 from flask import jsonify, request
 from database.person import get_person
+from database.role import get_person_roles
 
 
 def login_authorisation(func):
@@ -34,3 +35,8 @@ def login_authorisation(func):
         return func(*args, **kwargs)
 
     return wrapper
+
+
+def role_based_access_control():
+    username = None
+    roles = get_person_roles(username)

@@ -96,7 +96,7 @@ def delete_person(username: str) -> Person | DB_Error:
     try:
         person: Person | DB_Error = get_person(username)
         if isinstance(person, Person):
-            # TODO: Also delete corresponding Person
+            # TODO: Also delete corresponding Roles
             # Delete the connected entries in Certificate table
             db.session.query(Certificate).filter(
                 Certificate.issuer == username).delete()
