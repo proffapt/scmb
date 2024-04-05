@@ -104,3 +104,24 @@ INSERT INTO Person (username, email, password, first_name, last_name, address, p
 -- Insert dummy data into Certificate table
 INSERT INTO Certificate (timestamp, shipment, issuer, pdf_path, pdf_hash) VALUES
 ('2024-03-25 10:00:00', 'S1', 'john_doe', '/app/certificates/test.pdf', '1358251341bd5fe67118d310e088e33353e2bc10151ac2eb14aac0aab164db61');
+
+-- Insert dummy data into Sensor_Health_Monitoring_Device table
+INSERT INTO Sensor_Health_Monitoring_Device (code, shipment, description) VALUES
+('SHM001', 'S1', 'Temperature Sensor'),
+('SHM002', 'S2', 'Humidity Sensor'),
+('SHM003', 'S3', 'Shock Sensor');
+
+-- Insert dummy data into Sensor_Health_Monitoring_Device_Event table
+INSERT INTO Sensor_Health_Monitoring_Device_Event (sensor_health_monitoring_device, timestamp, remarks) VALUES
+('SHM001', '2024-03-21T08:00:00', 'Sensor activated'),
+('SHM001', '2024-03-22T10:30:00', 'Temperature within acceptable range'),
+('SHM001', '2024-03-23T14:45:00', 'Temperature slightly elevated, but still within range'),
+('SHM001', '2024-03-24T18:15:00', 'Temperature returned to normal'),
+('SHM002', '2024-03-21T09:15:00', 'Sensor activated'),
+('SHM002', '2024-03-22T12:00:00', 'Humidity levels normal'),
+('SHM002', '2024-03-23T16:30:00', 'Humidity levels slightly high, but still within range'),
+('SHM002', '2024-03-24T20:00:00', 'Humidity levels returned to normal'),
+('SHM003', '2024-03-21T10:45:00', 'Sensor activated'),
+('SHM003', '2024-03-22T14:20:00', 'No significant shocks detected'),
+('SHM003', '2024-03-23T18:10:00', 'Minor shock detected, but within acceptable limits'),
+('SHM003', '2024-03-24T22:30:00', 'No shocks detected');

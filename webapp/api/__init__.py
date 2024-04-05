@@ -8,7 +8,9 @@ from . import (
     shipment_event,
     person,
     certificate,
-    login
+    login,
+    shmd,
+    shmd_event
 )
 
 api = Blueprint('api', __name__)
@@ -213,4 +215,56 @@ api.add_url_rule(
     view_func=person.create,
     methods=["POST"],
     endpoint="create_person"
+)
+
+# Endpoints related to Sensor Health Monitoring Device 
+api.add_url_rule(
+    "/shmd/<string:code>",
+    view_func=shmd.get,
+    methods=["GET"],
+    endpoint="get_shmd"
+)
+api.add_url_rule(
+    "/shmd/shipment/<string:shipment>",
+    view_func=shmd.get_all_by_shipment,
+    methods=["GET"],
+    endpoint="get_shmd_by_shipment"
+)
+api.add_url_rule(
+    "/shmd/<string:code>",
+    view_func=shmd.delete,
+    methods=["DELETE"],
+    endpoint="delete_shmd"
+)
+api.add_url_rule(
+    "/shmd",
+    view_func=shmd.create_or_update,
+    methods=["POST", "PUT"],
+    endpoint="create_or_update_shmd"
+)
+
+# Endpoints related to events of Sensor Health Monitoring Device
+api.add_url_rule(
+    "/shmd/event/<string:id>",
+    view_func=shmd_event.get,
+    methods=["GET"],
+    endpoint="get_shmd_events"
+)
+api.add_url_rule(
+    "/shmd/event/sensor/<string:code>",
+    view_func=shmd_event.get_all_by_sensor_device,
+    methods=["GET"],
+    endpoint="get_shmd_events_by_sensor_device"
+)
+api.add_url_rule(
+    "/shmd/event/<int:id>",
+    view_func=shmd_event.delete,
+    methods=["DELETE"],
+    endpoint="delete_shmd_events"
+)
+api.add_url_rule(
+    "/shmd/event",
+    view_func=shmd_event.create_or_update,
+    methods=["POST", "PUT"],
+    endpoint="create_or_update_shmd_events"
 )

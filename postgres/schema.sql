@@ -83,3 +83,18 @@ CREATE TABLE IF NOT EXISTS Shipment_Event (
     shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
     event VARCHAR NOT NULL
 );
+
+-- Table: Sensor_Health_Monitoring_Device
+CREATE TABLE Sensor_Health_Monitoring_Device (
+   code VARCHAR PRIMARY KEY NOT NULL,
+   shipment VARCHAR REFERENCES Shipment(code) NOT NULL,
+   description VARCHAR NOT NULL
+);
+
+-- Table: SHMD_Event
+CREATE TABLE Sensor_Health_Monitoring_Device_Event (
+   id BIGSERIAL PRIMARY KEY NOT NULL,
+   timestamp TIMESTAMP NOT NULL,
+   sensor_health_monitoring_device VARCHAR REFERENCES Sensor_Health_Monitoring_Device(code) NOT NULL,
+   remarks VARCHAR NOT NULL
+);
